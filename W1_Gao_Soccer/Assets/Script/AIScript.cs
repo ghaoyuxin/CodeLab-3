@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class AIScript : MonoBehaviour
 {
-    private Vector2 ball;
+    public Transform ball;
     private Rigidbody2D rb;
     private void Start()
     {
-        ball = GameObject.FindWithTag("Ball").transform.position;
         rb = GetComponent<Rigidbody2D>();
-        print(ball);
     }
 
     private void Update()
     {
-        rb.velocity = new Vector2(ball.x, ball.y);
+        var direction = ball.position - gameObject.transform.position;
+        direction.Normalize();
+        rb.AddForce(direction);
     }
 }
