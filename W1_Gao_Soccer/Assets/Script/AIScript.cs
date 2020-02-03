@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIScript : MonoBehaviour
+public class AIScript
 {
-    public Transform ball;
+    private Transform ball;
+    private Transform enemy;
     private Rigidbody2D rb;
-    private void Start()
+    public void Initialize()
     {
-        rb = GetComponent<Rigidbody2D>();
+        ball = GameObject.FindWithTag("Ball").transform;
+        enemy = GameObject.FindWithTag("Enemy").transform;
+        rb = enemy.gameObject.GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    public void Update()
     {
-        var direction = ball.position - gameObject.transform.position;
+        var direction = ball.position - enemy.position;
         direction.Normalize();
         rb.AddForce(direction);
     }
