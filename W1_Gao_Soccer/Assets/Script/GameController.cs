@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public Color blueTeamColor, redTeamColor;
+    public GameObject ball;
+    public int PlayersPerTeam = 2; ////////// why const??? I can't use const, in order for AIController to work
 
     void Start()
     {

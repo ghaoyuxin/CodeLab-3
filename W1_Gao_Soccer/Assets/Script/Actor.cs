@@ -41,13 +41,13 @@ public abstract class Actor
         return this;
     }
 
-    protected Actor ApplyDirection(Vector3 target) ////////can I set it to protected
-    {
-        var direction = target - _gameObject.transform.position;
-        direction.Normalize();
-        _rigidbody2D.AddForce(direction);
-        return this;
-    }
+    // protected Actor ApplyDirection(Vector3 target) ////////can I set it to protected, is this a good way of writing this?
+    // {
+    //     var direction = target - _gameObject.transform.position;
+    //     direction.Normalize();
+    //     _rigidbody2D.AddForce(direction);
+    //     return this;
+    // }
 
     #endregion
 
@@ -60,13 +60,19 @@ public class AIPlayer : Actor
 
 
     //define AIPlayer
-    public AIPlayer(GameObject gameObject) : base(gameObject) { }
-    public override void Update() { }
+    public AIPlayer(GameObject gameObject) : base(gameObject) { } //constructor
+    public override void Update()
+    {
+
+    }
 }
 
 public class UserControlledPlayer : Actor
 {
     //define UserPlayer
     public UserControlledPlayer(GameObject gameObject) : base(gameObject) { }
-    public override void Update() { }
+    public override void Update()
+    {
+
+    }
 }
