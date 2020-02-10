@@ -29,7 +29,7 @@ public abstract class Actor
     public Actor SetTeam(bool blueTeam) ///////why public?
     {
         _isBlueTeam = blueTeam;
-        _spriteRenderer.color = _isBlueTeam ? Color.blue : Color.red;//Services.GameController.blueTeamColor : Services.GameController.redTeamColor;//////why this has problem??
+        _spriteRenderer.color = _isBlueTeam ? Services.GameController.blueTeamColor : Services.GameController.redTeamColor;
         return this;
     }
 
