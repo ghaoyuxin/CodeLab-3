@@ -8,8 +8,8 @@ public class AIController
     //make 1 AI player
     public void Initialize()
     {
-        var playerGameObject = Object.Instantiate(Resources.Load<GameObject>("Actor"));
-        new AIPlayer(playerGameObject).SetTeam(false).SetPosition(Random.Range(0, -8.0f), Random.Range(-4.0f, 4.0f)); ////??????? SetTeam not working
+        var AIGameObject = Object.Instantiate(Resources.Load<GameObject>("Actor"));
+        new AIPlayer(AIGameObject).SetTeam(false).SetPosition(Random.Range(0, -8.0f), Random.Range(-4.0f, 4.0f)); ////??????? SetTeam not working
     }
 
     // private void _CreateAIs()

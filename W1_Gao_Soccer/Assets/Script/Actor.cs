@@ -29,11 +29,7 @@ public abstract class Actor
     public Actor SetTeam(bool blueTeam) ///////why public?
     {
         _isBlueTeam = blueTeam;
-        // if (_isBlueTeam) _spriteRenderer.color = Services.GameController.blueTeamColor;
-        // else _spriteRenderer.color = Services.GameController.redTeamColor;
-        UnityEngine.Debug.Log(_spriteRenderer.color);
-        UnityEngine.Debug.Log(_isBlueTeam);
-        _spriteRenderer.color = _isBlueTeam ? Services.GameController.blueTeamColor : Services.GameController.redTeamColor;
+        _spriteRenderer.color = _isBlueTeam ? Color.blue : Color.red;//Services.GameController.blueTeamColor : Services.GameController.redTeamColor;//////why this has problem??
         return this;
     }
 
@@ -69,10 +65,10 @@ public class AIPlayer : Actor
     }
 }
 
-public class UserControlledPlayer : Actor
+public class HumanPlayer : Actor
 {
     //define UserPlayer
-    public UserControlledPlayer(GameObject gameObject) : base(gameObject) { }
+    public HumanPlayer(GameObject gameObject) : base(gameObject) { }
     public override void Update()
     {
 
