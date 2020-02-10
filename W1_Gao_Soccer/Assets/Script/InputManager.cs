@@ -11,6 +11,6 @@ public class InputManager
         float x = UnityEngine.Input.GetAxis("Horizontal" + playerNum) * speed;
         float y = UnityEngine.Input.GetAxis("Vertical" + playerNum) * speed;
         //assign velocity
-        //rb.velocity = new Vector2(x, y);
+        Services.Actor._rigidbody2D.velocity = new Vector2(x, y);
     }
 }

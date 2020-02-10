@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public Color blueTeamColor, redTeamColor;
+
     void Start()
     {
         Services.AIController = new AIController();
