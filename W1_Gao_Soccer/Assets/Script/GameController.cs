@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        Services.GameController = this;
         Services.AIController = new AIController();
         Services.AIController.Initialize();
 

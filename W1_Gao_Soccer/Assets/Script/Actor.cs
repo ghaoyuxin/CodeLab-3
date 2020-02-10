@@ -29,8 +29,10 @@ public abstract class Actor
     public Actor SetTeam(bool blueTeam) ///////why public?
     {
         _isBlueTeam = blueTeam;
-        // if (_isBluePlayer) _spriteRenderer.color = Services.GameController.blueTeamColor;
+        // if (_isBlueTeam) _spriteRenderer.color = Services.GameController.blueTeamColor;
         // else _spriteRenderer.color = Services.GameController.redTeamColor;
+        UnityEngine.Debug.Log(_spriteRenderer.color);
+        UnityEngine.Debug.Log(_isBlueTeam);
         _spriteRenderer.color = _isBlueTeam ? Services.GameController.blueTeamColor : Services.GameController.redTeamColor;
         return this;
     }
