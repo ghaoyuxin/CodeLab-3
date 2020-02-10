@@ -9,13 +9,15 @@ public class GameController : MonoBehaviour
         Services.AIController = new AIController();
         Services.AIController.Initialize();
 
-        //initialize Actors, InputManager
+        //initialize Actors, //load prefab for player, //InputManager
 
     }
 
     void Update()
     {
         Services.AIController.Update();
+
+
 
         //run the update for checking input, run the update for Actors
 

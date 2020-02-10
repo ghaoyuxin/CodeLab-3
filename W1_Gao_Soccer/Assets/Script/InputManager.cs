@@ -2,21 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class InputManager
 {
-    private Rigidbody2D rb;
     public float speed = 20;
-    public int playerNum = 1;
-    void Start()
-    {
-        //get whatever player or AIplayer??? maybe I don't need this
-        rb = GetComponent<Rigidbody2D>();
-
-    }
+    private int playerNum = 1;
     void Update()
     {
-        float x = Input.GetAxis("Horizontal" + playerNum) * speed;
-        float y = Input.GetAxis("Vertical" + playerNum) * speed;
-        rb.velocity = new Vector2(x, y);
+        float x = UnityEngine.Input.GetAxis("Horizontal" + playerNum) * speed;
+        float y = UnityEngine.Input.GetAxis("Vertical" + playerNum) * speed;
+        //assign velocity
+        //rb.velocity = new Vector2(x, y);
     }
 }
