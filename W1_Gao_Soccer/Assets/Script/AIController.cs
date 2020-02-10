@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIScript
+public class AIController
 {
     private Transform ball;
     private Transform enemy;
@@ -19,5 +19,7 @@ public class AIScript
         var direction = ball.position - enemy.position;
         direction.Normalize();
         rb.AddForce(direction);
+
     }
+
 }
