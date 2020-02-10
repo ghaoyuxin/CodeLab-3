@@ -10,6 +10,7 @@ public class AIController
     public void Initialize()
     {
         ball = GameObject.FindWithTag("Ball").transform;
+        //can I just get one AI player's transform???
         enemy = GameObject.FindWithTag("Enemy").transform;
         rb = enemy.gameObject.GetComponent<Rigidbody2D>();
     }

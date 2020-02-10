@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         Services.AIController = new AIController();
         Services.AIController.Initialize();
 
+        //initialize Actors, InputManager
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         Services.AIController.Update();
+
+        //run the update for checking input, run the update for Actors
 
     }
 }

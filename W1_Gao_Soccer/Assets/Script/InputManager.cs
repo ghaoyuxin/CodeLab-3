@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class InputManager : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float speed = 20;
     public int playerNum = 1;
-    // Start is called before the first frame update
     void Start()
     {
+        //get whatever player or AIplayer??? maybe I don't need this
         rb = GetComponent<Rigidbody2D>();
 
     }
