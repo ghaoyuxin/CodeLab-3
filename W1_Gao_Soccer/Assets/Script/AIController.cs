@@ -5,20 +5,24 @@ using System.Linq;
 
 public class AIController
 {
-    //make 1 AI player
+    //make a few AI player
+    private List<Actor> _AIs;
     public void Initialize()
     {
-        var AIGameObject = Object.Instantiate(Resources.Load<GameObject>("Actor"));
-        new AIPlayer(AIGameObject).SetTeam(false).SetPosition(Random.Range(0, -8.0f), Random.Range(-4.0f, 4.0f)); ////??????? SetTeam not working
+        _AIs = new List<Actor>();
+        _CreateAIs();
     }
 
-    // private void _CreateAIs()
-    // {
-    //     _AIs = new List<Actor>();
-    //     for (var i = 0; i < Services.GameController.PlayersPerTeam; i++)
-    //         Object.Instantiate(Resources.Load<GameObject>("Actor"));
-    //     _AIs.Add(_AIs.SetTeam(false).SetPosition(-1, 0))
-    // }
+    private void _CreateAIs()
+    {
+        for (var i = 0; i < Services.GameController.PlayersPerTeam; i++)
+        {
+            var AIGameObject = Object.Instantiate(Resources.Load<GameObject>("Actor"));
+            _AIs.Add(new AIPlayer(AIGameObject).SetTeam(false).SetPosition(Random.Range(0, -8.0f), Random.Range(-4.0f, 4.0f)));
+        }
+
+
+    }
 
     public void Update()
     {
