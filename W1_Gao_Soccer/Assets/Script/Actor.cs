@@ -55,12 +55,14 @@ public abstract class Actor
 
 public class AIPlayer : Actor
 {
-
-
     //define AIPlayer
     public AIPlayer(GameObject gameObject) : base(gameObject) { } //constructor
+    //AIPlayer follows the ball, define behavior
     public override void Update()
     {
+        var direction = Services.GameController.ball.transform.position - _gameObject.transform.position;
+        direction.Normalize();
+        _rigidbody2D.AddForce(direction);
 
     }
 }

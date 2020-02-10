@@ -1116,8 +1116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b853de7d6d8e44e028e30d9403148499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blueTeamColor: {r: 0.2783019, g: 0.8942983, b: 1, a: 1}
-  redTeamColor: {r: 1, g: 0.77821165, b: 0.47450984, a: 1}
+  blueTeamColor: {r: 0, g: 0.043137256, b: 0.87058824, a: 1}
+  redTeamColor: {r: 1, g: 0.0047169924, b: 0.53333336, a: 1}
   ball: {fileID: 1780796363}
   PlayersPerTeam: 2
 --- !u!4 &2016773426

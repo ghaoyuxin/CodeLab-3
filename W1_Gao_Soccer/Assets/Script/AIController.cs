@@ -15,18 +15,28 @@ public class AIController
 
     private void _CreateAIs()
     {
+        //make red team AI
         for (var i = 0; i < Services.GameController.PlayersPerTeam; i++)
         {
             var AIGameObject = Object.Instantiate(Resources.Load<GameObject>("Actor"));
-            _AIs.Add(new AIPlayer(AIGameObject).SetTeam(false).SetPosition(Random.Range(0, -8.0f), Random.Range(-4.0f, 4.0f)));
+            _AIs.Add(new AIPlayer(AIGameObject).SetTeam(false).SetPosition(Random.Range(0, -7.0f), Random.Range(-4.0f, 4.0f)));
         }
 
+        //make blue team AI, except for HumanPlayer
+        for (var i = 0; i < Services.GameController.PlayersPerTeam - 1; i++)
+        {
+            var AIGameObject = Object.Instantiate(Resources.Load<GameObject>("Actor"));
+            _AIs.Add(new AIPlayer(AIGameObject).SetTeam(true).SetPosition(Random.Range(0, 7.0f), Random.Range(-4.0f, 4.0f)));
+        }
 
     }
 
     public void Update()
     {
-
+        foreach (var AI in _AIs)
+        {
+            AI.Update();
+        }
 
     }
 
