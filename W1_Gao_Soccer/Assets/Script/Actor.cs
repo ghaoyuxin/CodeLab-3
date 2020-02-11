@@ -57,7 +57,7 @@ public class AIPlayer : Actor
 {
     //define AIPlayer
     public AIPlayer(GameObject gameObject) : base(gameObject) { } //constructor
-    //AIPlayer follows the ball, define behavior
+    //define AIPlayer behavior
     public override void Update()
     {
         var direction = Services.GameController.ball.transform.position - _gameObject.transform.position;
@@ -69,10 +69,9 @@ public class AIPlayer : Actor
 
 public class HumanPlayer : Actor
 {
-    //define UserPlayer
-    public HumanPlayer(GameObject gameObject) : base(gameObject) { }
-    public override void Update()
-    {
+    //define HumanPlayer
+    public HumanPlayer(GameObject gameObject) : base(gameObject) { } //constructor
+    //define HumanPlayer behavior
+    public override void Update() { }
 
-    }
 }

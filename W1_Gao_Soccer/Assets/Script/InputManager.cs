@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class InputManager
 {
-    public float speed = 20;
+    public float speed = 10;
     private int playerNum = 1;
-    void Update()
+    public void Update()
     {
         float x = UnityEngine.Input.GetAxis("Horizontal" + playerNum) * speed;
         float y = UnityEngine.Input.GetAxis("Vertical" + playerNum) * speed;
         //assign velocity
-        Services.Actor._rigidbody2D.velocity = new Vector2(x, y);
+        Services.HumanPlayer._rigidbody2D.velocity = new Vector2(x, y);
     }
 }
