@@ -13,7 +13,7 @@ public abstract class Actor
     //define Actor
     protected Actor(GameObject gameObject) //constructor https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/using-constructors
     {
-        _gameObject = gameObject;
+        _gameObject = gameObject; // GameObject is a monobehavior, not a C# thing, so I need to create a gameobject that can have the spriterenderer and rigidbody etc.
         _spriteRenderer = _gameObject.GetComponent<SpriteRenderer>(); ///////////why not use gameObject directly ??
         _rigidbody2D = _gameObject.GetComponent<Rigidbody2D>();
     }
@@ -41,10 +41,6 @@ public abstract class Actor
 
     // protected Actor ApplyDirection(Vector3 target) ////////can I set it to protected, is this a good way of writing this?
     // {
-    //     var direction = target - _gameObject.transform.position;
-    //     direction.Normalize();
-    //     _rigidbody2D.AddForce(direction);
-    //     return this;
     // }
 
     #endregion
@@ -73,5 +69,4 @@ public class HumanPlayer : Actor
     public HumanPlayer(GameObject gameObject) : base(gameObject) { } //constructor
     //define HumanPlayer behavior
     public override void Update() { }
-
 }

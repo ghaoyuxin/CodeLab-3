@@ -6,21 +6,21 @@ public class GameController : MonoBehaviour
 {
     public Color blueTeamColor, redTeamColor;
     public GameObject ball;
-    public int PlayersPerTeam = 2; ////////// why const??? I can't use const, in order for AIController to work
+    public const int PlayersPerTeam = 2; ////////// why const??? I can't use const, in order for AIController to work
     private Actor _humanPlayer;
 
     void Start()
     {
+
         Services.GameController = this;
         Services.AIController = new AIController();
+
         Services.AIController.Initialize();
         Services.InputManager = new InputManager();
 
-
         //make HumanPlayer
         var playerGameObject = Instantiate(Resources.Load<GameObject>("Actor")); // <GameObject> casting type
-        Services.HumanPlayer = new HumanPlayer(playerGameObject); //////////好乱哪！！！！！怎么整理一下？？？？
-        _humanPlayer = new HumanPlayer(playerGameObject).SetTeam(true).SetPosition(1, 0);
+        Services.HumanPlayer = (HumanPlayer)new HumanPlayer(playerGameObject).SetTeam(true).SetPosition(1, 0);
 
     }
 
