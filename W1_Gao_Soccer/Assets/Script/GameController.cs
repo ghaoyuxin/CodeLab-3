@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour
 {
     public Color blueTeamColor, redTeamColor;
     public GameObject ball;
-    public const int PlayersPerTeam = 2; ////////// why const??? I can't use const, in order for AIController to work
+    public int playersPerTeam = 2; ////////// why const??? I can't use const, in order for AIController to work
     private Actor _humanPlayer;
 
     void Start()

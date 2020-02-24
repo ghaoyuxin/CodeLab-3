@@ -42,7 +42,7 @@ public abstract class Actor
     // protected Actor ApplyDirection(Vector3 target) ////////can I set it to protected, is this a good way of writing this?
     // {
     // }
-
+    
     #endregion
 
 }
