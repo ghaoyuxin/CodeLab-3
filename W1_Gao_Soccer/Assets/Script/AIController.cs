@@ -6,10 +6,10 @@ using System.Linq;
 public class AIController
 {
     //make a few AI player
-    private List<Actor> _AIPlayers;
+    private List<Actor> _aiPlayers;
     public void Initialize()
     {
-        _AIPlayers = new List<Actor>();
+        _aiPlayers = new List<Actor>();
         _CreateAIs();
     }
 
@@ -18,24 +18,24 @@ public class AIController
         //make red team AI
         for (var i = 0; i < GameController.PlayersPerTeam; i++)
         {
-            var AIGameObject = Object.Instantiate(Resources.Load<GameObject>("Actor"));
-            _AIPlayers.Add(new AIPlayer(AIGameObject).SetTeam(false).SetPosition(Random.Range(0, -7.0f), Random.Range(-4.0f, 4.0f)));
+            var aiGameObject = Object.Instantiate(Resources.Load<GameObject>("Actor"));
+            _aiPlayers.Add(new AIPlayer(aiGameObject).SetTeam(false).SetPosition(Random.Range(0, -7.0f), Random.Range(-4.0f, 4.0f)));
         }
 
         //make blue team AI, except for HumanPlayer
         for (var i = 0; i < GameController.PlayersPerTeam - 1; i++)
         {
-            var AIGameObject = Object.Instantiate(Resources.Load<GameObject>("Actor"));
-            _AIPlayers.Add(new AIPlayer(AIGameObject).SetTeam(true).SetPosition(Random.Range(0, 7.0f), Random.Range(-4.0f, 4.0f)));
+            var aiGameObject = Object.Instantiate(Resources.Load<GameObject>("Actor"));
+            _aiPlayers.Add(new AIPlayer(aiGameObject).SetTeam(true).SetPosition(Random.Range(0, 7.0f), Random.Range(-4.0f, 4.0f)));
         }
 
     }
 
     public void Update()
     {
-        foreach (var AIPlayer in _AIPlayers)
+        foreach (var aiPlayer in _aiPlayers)
         {
-            AIPlayer.Update();
+            aiPlayer.Update();
         }
 
     }

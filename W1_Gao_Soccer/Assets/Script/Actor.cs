@@ -4,24 +4,24 @@ using UnityEngine;
 
 public abstract class Actor
 {
-    protected GameObject _gameObject;
-    private SpriteRenderer _spriteRenderer; ////////why using private not protected
-    public Rigidbody2D _rigidbody2D;
+    protected readonly GameObject GameObject;
+    private readonly SpriteRenderer _spriteRenderer; ////////why using private not protected
+    public readonly Rigidbody2D rigidbody2D;
     private bool _isBlueTeam = false;
 
     #region Lifecycle Management
     //define Actor
     protected Actor(GameObject gameObject) //constructor https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/using-constructors
     {
-        _gameObject = gameObject; // GameObject is a monobehavior, not a C# thing, so I need to create a gameobject that can have the spriterenderer and rigidbody etc.
-        _spriteRenderer = _gameObject.GetComponent<SpriteRenderer>(); ///////////why not use gameObject directly ??
-        _rigidbody2D = _gameObject.GetComponent<Rigidbody2D>();
+        this.GameObject = gameObject; // GameObject is a monobehavior, not a C# thing, so I need to create a gameobject that can have the spriterenderer and rigidbody etc.
+        _spriteRenderer = this.GameObject.GetComponent<SpriteRenderer>(); ///////////why not use gameObject directly ??
+        rigidbody2D = this.GameObject.GetComponent<Rigidbody2D>();
     }
 
     public abstract void Update(); ////////why using public not protected, this means, the class Actor or its subclass must provide an implementation for "Update" function
     public void Destroy()
     {
-        UnityEngine.Object.Destroy(_gameObject);
+        UnityEngine.Object.Destroy(GameObject);
     }
     #endregion
 
@@ -35,7 +35,7 @@ public abstract class Actor
 
     public Actor SetPosition(float x, float y) ////////why public?
     {
-        _gameObject.transform.position = new Vector3(x, y); // z is default = 0
+        GameObject.transform.position = new Vector3(x, y); // z is default = 0
         return this;
     }
 
@@ -56,9 +56,9 @@ public class AIPlayer : Actor
     //define AIPlayer behavior
     public override void Update()
     {
-        var direction = Services.GameController.ball.transform.position - _gameObject.transform.position;
+        var direction = Services.GameController.ball.transform.position - GameObject.transform.position;
         direction.Normalize();
-        _rigidbody2D.AddForce(direction);
+        rigidbody2D.AddForce(direction);
 
     }
 }
