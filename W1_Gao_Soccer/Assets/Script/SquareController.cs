@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class SquareController: MonoBehaviour
 {
-    private float _speed = 0.1f;
-    public bool hungry;
 
     private BehaviorTree.Tree<SquareController> _tree;
 
@@ -51,7 +49,7 @@ public class SquareController: MonoBehaviour
         _tree.Update(this);
     }
 
-    public void Idling()
+    public void BeIdle()
     {
         print("Idling");
         
@@ -67,7 +65,11 @@ public class SquareController: MonoBehaviour
     {
         print("kicked ball");
     }
-    
+
+    public void ReturnToGate()
+    {
+        print("returned");
+    }
 
 }
 
@@ -93,35 +95,42 @@ public class Idling : BehaviorTree.Node<SquareController>
 {
     public override bool Update(SquareController context)
     {
-        context.Shake();
+        context.BeIdle();
 
         return true;
     }
 }
 
-public class GoTowardsMouse : BehaviorTree.Node<SquareController>
+public class GoToBall : BehaviorTree.Node<SquareController>
 {
-    private bool towards;
-
-    public GoTowardsMouse(bool towards)
-    {
-        this.towards = towards;
-    }
+    private bool isBallInArea;
 
     public override bool Update(SquareController context)
     {
-        context.GoTowardsMouse(towards);
+        context.GoToBall(isBallInArea);
 
         return true;
     }
 }
 
-public class BecomeHungry : BehaviorTree.Node<SquareController>
+public class KickBall : BehaviorTree.Node<SquareController>
 {
+    private bool isBallNearGate;
     public override bool Update(SquareController context)
     {
-        context.hungry = true;
+        context.KickBall(isBallNearGate);
+        return true;
+    }
 
+    
+}
+
+public class ReturnToGate : BehaviorTree.Node<SquareController>
+{
+
+    public override bool Update(SquareController context)
+    {
+        context.ReturnToGate();
         return true;
     }
 }
