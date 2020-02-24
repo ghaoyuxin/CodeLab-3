@@ -104,6 +104,11 @@ public class Idling : BehaviorTree.Node<SquareController>
 public class GoToBall : BehaviorTree.Node<SquareController>
 {
     private bool isBallInArea;
+    
+    // public GoToBall(bool isBallInArea)
+    // {
+    //     this.isBallInArea = isBallInArea;
+    // }
 
     public override bool Update(SquareController context)
     {
@@ -116,18 +121,16 @@ public class GoToBall : BehaviorTree.Node<SquareController>
 public class KickBall : BehaviorTree.Node<SquareController>
 {
     private bool isBallNearGate;
+    
     public override bool Update(SquareController context)
     {
         context.KickBall(isBallNearGate);
         return true;
     }
-
-    
 }
 
 public class ReturnToGate : BehaviorTree.Node<SquareController>
 {
-
     public override bool Update(SquareController context)
     {
         context.ReturnToGate();
