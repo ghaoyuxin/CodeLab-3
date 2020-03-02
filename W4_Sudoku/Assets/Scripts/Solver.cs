@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class Solver : MonoBehaviour
 {
-    //make a grid
+    //Load a text file
     //if xx, return unsolvable
     //if xx, return solved
     //if xx, return manySolved
