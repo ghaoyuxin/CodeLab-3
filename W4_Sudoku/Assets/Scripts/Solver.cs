@@ -25,6 +25,7 @@ public class Solver : MonoBehaviour
     private List<string> _row;
     private List<string> _column;
     private List<string> _grid;
+    private int _initNumber;
     private void Awake()
     {
         var filePath = Application.dataPath + "/Resources/sudoku_example_1.txt";
@@ -47,10 +48,10 @@ public class Solver : MonoBehaviour
     private bool NonRepeatRowColumn()
     {
         //doesn't have to convert to numbers since compare string also takes constant time
-        for (var y = 0; y < level.Length - 1; y++)
+        for (var y = 0; y < level.Length; y++)
         {
             var row = level[y];
-            for (var x = 0; x < row.Length - 1; x++)
+            for (var x = 0; x < row.Length; x++)
             {
                 var single = row[x].ToString();
                 if (single == ".")//make a new row, check if the condensed row has repeating items
@@ -76,21 +77,31 @@ public class Solver : MonoBehaviour
 
     private bool NonRepeatInGrid()
     {
-        for (var y = 0; y < level.Length % 3 - 1; y +=3)
+        for (var m = 0; m < level.Length; m+=3)
         {
-            var row = level[y];
-            for (var x = 0; x < row.Length % 3 - 1; x += 3)
+            var row = level[m];
+            for (var n = 0; n < row.Length; m+=3)
             {
-                var single = row[x].ToString();
-                if (single == ".")
-                    continue;
-                _grid.Add(single);
-            }
-            for (var i = 0; i < _grid.Count-2; i++)
-            {
-                if (_grid[i] == _grid[i + 1]) return false;
+                //3*3 grid
+                for (var y = m; y < 3 + m; y ++) 
+                {
+                    for (var x = n; x < 3 + n; x ++)
+                    {
+                        var single = row[x].ToString();
+                        if (single == ".")
+                            continue;
+                        _grid.Add(single);
+                    }
+                }
+                for (var i = 0; i < _grid.Count-2; i++)
+                {
+                    if (_grid[i] == _grid[i + 1]) return false;
+                }
             }
         }
+        
         return true;
     }
+    
+    
 }
