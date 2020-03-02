@@ -21,6 +21,8 @@ public class Solver : MonoBehaviour
     //if xx, return solved
     //if xx, return manySolved
     private string[] level;
+    private List<string> _row;
+    private List<string> _column;
     private void Awake()
     {
         var filePath = Application.dataPath + "/Resources/sudoku_example_1.txt";
@@ -32,29 +34,40 @@ public class Solver : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Row/column does not repeat is " + NonRepeat().ToString());
-        
+        _row = new List<string>();
+        _column = new List<string>();
+        Debug.Log("Row/Column does not repeat is " + NonRepeatRowColumn().ToString());
+
     }
 
-    private bool NonRepeat()
+    private bool NonRepeatRowColumn()
     {
-        //doesn't have to convert to numbers since compare to also takes constant time
-        //uint
-        for (var y = 0; y < level.Length - 2; y++)
+        //doesn't have to convert to numbers since compare string also takes constant time
+        for (var y = 0; y < level.Length - 1; y++)
         {
             var row = level[y];
             for (var x = 0; x < row.Length - 2; x++)
             {
                 var single = row[x].ToString();
-                if (single == ".")
+                if (single == ".")//make a new row, check if the condensed row has repeating items
                     continue;
+                _row.Add(single); 
+                for (var i = 0; i < _row.Count-2; i++)
+                {
+                    if (_row[i] == _row[i + 1]) return false;
+                }
                 
-
+                if (level[x][y].ToString() == ".")//make a new column
+                    continue;
+                _column.Add(level[x][y].ToString());
+                
+                for (var i = 0; i < _column.Count-2; i++) //, check if has repeating items
+                {
+                    if (_column[i] == _column[i + 1]) return false;
+                }
             }
             
-
         }
-
         return true;
     }
     
