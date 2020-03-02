@@ -22,17 +22,15 @@ public class Solver : MonoBehaviour
         Debug.Assert(File.Exists(filePath));
         
         string[] level1 = File.ReadAllLines(filePath);
-
-
+        
+        //doesn't have to convert to numbers since compare to also takes constant time
         for (var y = 0; y < level1.Length; y++)
         {
             var row = level1[y];
             for (var x = 0; x < row.Length; x++)
             {
                 var single = row[x];
-                // if(single.ToString() == ".") print(null);
-                // var newlevel1 = Convert.ToInt32(single.ToString());
-                // print(newlevel1);
+                
             }
         }
         
