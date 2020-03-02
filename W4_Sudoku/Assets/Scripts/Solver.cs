@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.Analytics;
 
 //Given a text file representing an unsolved sudoku puzzle,
 //identify if the puzzle is
@@ -23,6 +24,7 @@ public class Solver : MonoBehaviour
     private string[] level;
     private List<string> _row;
     private List<string> _column;
+    private List<string> _grid;
     private void Awake()
     {
         var filePath = Application.dataPath + "/Resources/sudoku_example_1.txt";
@@ -36,7 +38,9 @@ public class Solver : MonoBehaviour
     {
         _row = new List<string>();
         _column = new List<string>();
+        _grid = new List<string>();
         Debug.Log("Row/Column does not repeat is " + NonRepeatRowColumn().ToString());
+        Debug.Log("Grid does not repeat is " + NonRepeatInGrid().ToString());
 
     }
 
@@ -46,7 +50,7 @@ public class Solver : MonoBehaviour
         for (var y = 0; y < level.Length - 1; y++)
         {
             var row = level[y];
-            for (var x = 0; x < row.Length - 2; x++)
+            for (var x = 0; x < row.Length - 1; x++)
             {
                 var single = row[x].ToString();
                 if (single == ".")//make a new row, check if the condensed row has repeating items
@@ -66,11 +70,27 @@ public class Solver : MonoBehaviour
                     if (_column[i] == _column[i + 1]) return false;
                 }
             }
-            
         }
         return true;
     }
-    
-    
 
+    private bool NonRepeatInGrid()
+    {
+        for (var y = 0; y < level.Length % 3 - 1; y +=3)
+        {
+            var row = level[y];
+            for (var x = 0; x < row.Length % 3 - 1; x += 3)
+            {
+                var single = row[x].ToString();
+                if (single == ".")
+                    continue;
+                _grid.Add(single);
+            }
+            for (var i = 0; i < _grid.Count-2; i++)
+            {
+                if (_grid[i] == _grid[i + 1]) return false;
+            }
+        }
+        return true;
+    }
 }
