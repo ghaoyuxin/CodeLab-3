@@ -48,6 +48,7 @@ public class Solver : MonoBehaviour
     private bool NonRepeatRowColumn()
     {
         //doesn't have to convert to numbers since compare string also takes constant time
+        //do use char instead of string
         for (var y = 0; y < level.Length; y++)
         {
             var row = level[y];
@@ -62,7 +63,7 @@ public class Solver : MonoBehaviour
                     if (_row[i] == _row[i + 1]) return false;
                 }
                 
-                if (level[x][y].ToString() == ".")//make a new column
+                if (level[x][y].ToString() == ".")//I am swapping x, y in order to check vertically, does this create a lot duplicated checks?
                     continue;
                 _column.Add(level[x][y].ToString());
                 
@@ -77,6 +78,7 @@ public class Solver : MonoBehaviour
 
     private bool NonRepeatInGrid()
     {
+        //I have 5 for loops here. It's making unity to think forever.
         for (var m = 0; m < level.Length; m+=3)
         {
             var row = level[m];
@@ -99,7 +101,6 @@ public class Solver : MonoBehaviour
                 }
             }
         }
-        
         return true;
     }
     
