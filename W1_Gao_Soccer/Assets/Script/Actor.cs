@@ -32,41 +32,30 @@ public abstract class Actor
         _spriteRenderer.color = _isBlueTeam ? Services.GameController.blueTeamColor : Services.GameController.redTeamColor;
         return this;
     }
-
     public Actor SetPosition(float x, float y) ////////why public?
     {
         GameObject.transform.position = new Vector3(x, y); // z is default = 0
         return this;
     }
-
-    // protected Actor ApplyDirection(Vector3 target) ////////can I set it to protected, is this a good way of writing this?
-    // {
-    // }
-    
     #endregion
-
 }
-
-
-
 public class AIPlayer : Actor
 {
     //define AIPlayer
-    public AIPlayer(GameObject gameObject) : base(gameObject) { } //constructor
+    public AIPlayer(GameObject gameObject) : base(gameObject) {} //constructor
     //define AIPlayer behavior
     public override void Update()
     {
         var direction = Services.GameController.ball.transform.position - GameObject.transform.position;
         direction.Normalize();
         rigidbody2D.AddForce(direction);
-
     }
 }
 
 public class HumanPlayer : Actor
 {
     //define HumanPlayer
-    public HumanPlayer(GameObject gameObject) : base(gameObject) { } //constructor
+    public HumanPlayer(GameObject gameObject) : base(gameObject) {} //constructor
     //define HumanPlayer behavior
-    public override void Update() { }
+    public override void Update() {}
 }

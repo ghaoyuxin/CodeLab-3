@@ -21,15 +21,11 @@ public class SquareController: MonoBehaviour
 
         var ballNearGate = new Tree<SquareController>
         (
-            new Selector<SquareController>
+            new Sequence<SquareController>
             (
-                new Sequence<SquareController>
-                    (
-                    new IsBallNearGate(),
-                        new KickBall()
-                    ),
-                new ReturnToGate()
-                
+            new IsBallNearGate(),
+                //new IsPlayerNearBall(),
+                new KickBall()
             )
         );
 

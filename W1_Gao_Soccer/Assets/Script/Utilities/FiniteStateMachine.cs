@@ -27,7 +27,7 @@ public class FiniteStateMachine<TContext>
 		PerformPendingTransition();
 	}
 
-	public void TransitionTo<TState>() where TState : State
+	public void TransitionTo<TState>() where TState : State //where define TState
 	{
 		PendingState = GetOrCreateState<TState>();
 	}
@@ -36,7 +36,7 @@ public class FiniteStateMachine<TContext>
 	{
 		if (PendingState == null) return;
 		
-		CurrentState?.OnExit();
+		CurrentState?.OnExit(); // if (CurrentState != null) CurrentState.OnExit();
 
 		CurrentState = PendingState;
 
