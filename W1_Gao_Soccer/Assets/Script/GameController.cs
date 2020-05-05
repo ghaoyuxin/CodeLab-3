@@ -71,7 +71,7 @@ public class GameController : MonoBehaviour
             //make HumanPlayer
             var playerGameObject = Instantiate(Resources.Load<GameObject>("Actor"));
             Services.HumanPlayer = (HumanPlayer)new HumanPlayer(playerGameObject).SetTeam(true).SetPosition(1, 0);
-            
+            //make AI players
             Services.AIController = new AIController();
             Services.AIController.Initialize();
         }
@@ -82,6 +82,37 @@ public class GameController : MonoBehaviour
             
             Services.InputManager.Update();
             Services.AIController.Update();
+            //transition
+            if(Services.ball.isScored) TransitionTo<GameOver>();
         }
     }
+    
+    private class GameOver : GameState
+    {
+        public override void OnEnter()
+        {
+            base.OnEnter();
+
+            Context.gameOver.SetActive(true);
+            Context.main.SetActive(true);
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                TransitionTo<TitleScreen>();
+            }
+        }
+
+        public override void OnExit()
+        {
+            Services.HumanPlayer.Destroy();
+            Services.AIController.Destory();
+            Services.ball.Reset();
+        }
+    }
+    
 }

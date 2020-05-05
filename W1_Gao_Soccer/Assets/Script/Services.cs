@@ -8,5 +8,6 @@ public static class Services
     public static AIController AIController;
     public static HumanPlayer HumanPlayer; //Actor 是 abstract，所以这里要
     public static InputManager InputManager;
+    public static Ball ball;
 
 }

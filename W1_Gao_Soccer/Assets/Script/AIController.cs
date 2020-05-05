@@ -41,4 +41,12 @@ public class AIController
 
     }
 
+    public void Destory()
+    {
+        foreach (var actor in _aiPlayers)
+        {
+            actor.Destroy();
+        }
+    }
+
 }

@@ -13,4 +13,9 @@ public class InputManager
         //assign velocity
         Services.HumanPlayer.rigidbody2D.velocity = new Vector2(x, y);
     }
+
+    public void Destory()
+    {
+        this.Destory();
+    }
 }
